@@ -1,0 +1,648 @@
+.equipment
+  padding-top: 60px
+
+.equipment .title_h2
+  margin-bottom: 50px
+
+
+.page_nav
+  padding: 39px 0
+  background: #4088DD
+
+.page_nav .mobile_box
+  display: none
+
+.page_nav ul
+  display: flex
+  flex-wrap: wrap
+  li
+    margin-bottom: 10px
+
+.page_nav .link
+  display: block
+  padding: 18px 50px
+  background: rgba(255, 255, 255, 0.3)
+  border-radius: 50px
+  font-family: "Roboto", sans-serif
+  font-style: normal
+  font-weight: 400
+  font-size: 16px
+  line-height: 24px
+  color: #FFFFFF
+  margin-right: 10px
+  cursor: pointer
+  transition: all 0.3s ease
+
+.page_nav .link.active
+  background: #FFFFFF
+  color: #4088DD
+
+.page_nav .link:hover
+  background: #FFFFFF
+  color: #4088DD
+
+
+.equipment__wrap
+  padding-top: 33px
+  padding-bottom: 60px
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  justify-content: space-between
+
+
+.equipment__aside
+  min-width: 457px
+  transform: translateX(-28px)
+
+.equipment__aside .title_menu, .equipment__aside .close_filter
+  display: none
+
+.equipment__aside .title_menu
+  display: none
+
+.equipment__aside .wrap
+  background: #FFFFFF
+
+.equipment__aside .box
+  background: #FFFFFF
+  border-bottom: 1px solid #F3F4F9
+
+.equipment__aside .price
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  align-items: center
+
+.equipment__aside .price .input
+  height: 60px
+  background: #F3F4F9
+  border-radius: 10px
+  position: relative
+
+.equipment__aside .price .input input
+  width: 100%
+  height: 100%
+  background-color: transparent
+  border: 0
+  padding-left: 42px
+  font-weight: 500
+  font-size: 16px
+  line-height: 24px
+  color: #4088DD
+
+.equipment__aside .price .input:nth-child(1)
+  width: 133px
+  margin-right: 20px
+
+.equipment__aside .price .input:nth-child(1):after
+  content: "от"
+  position: absolute
+  top: 50%
+  left: 20px
+  transform: translateY(-50%)
+  font-weight: 500
+  font-size: 16px
+  line-height: 24px
+  color: #4088DD
+
+.equipment__aside .price .input:nth-child(2)
+  width: 160px
+
+.equipment__aside .price .input:nth-child(2):after
+  content: "до"
+  position: absolute
+  top: 50%
+  left: 20px
+  transform: translateY(-50%)
+  font-weight: 500
+  font-size: 16px
+  line-height: 24px
+  color: #4088DD
+
+.equipment__aside .checkbox
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  margin-bottom: 20px
+  position: relative
+
+.equipment__aside .checkbox input
+  width: 20px
+  height: 20px
+  position: relative
+  z-index: -1
+  margin-right: 12px
+
+.equipment__aside .checkbox label
+  font-family: "Gilroy", sans-serif
+  font-weight: 400
+  font-size: 18px
+  line-height: 100%
+  color: #414253
+  cursor: pointer
+
+.equipment__aside .checkbox label::after
+  content: ""
+  width: 20px
+  height: 20px
+  position: absolute
+  top: 0
+  left: 0
+  background: #F3F4F9
+  border-radius: 6px
+
+.equipment__aside .checkbox input:checked + label::after
+  background: #F3F4F9 url('../../assets/images/check.svg') no-repeat center
+  background-size: 130%
+
+.equipment__aside .block_open
+  padding: 0 30px 30px 30px
+  display: none
+
+.equipment__aside .btn_open
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  align-items: center
+  width: 100%
+  background-color: transparent
+  border: 0
+  padding: 33px 36px 31px 36px
+  font-family: "Gilroy", sans-serif
+  font-weight: 700
+  font-size: 16px
+  line-height: 100%
+  color: #4088DD
+
+.equipment__aside .btn_open svg
+  margin-right: 18px
+
+.equipment__aside .btn_open.active + .block_open, .equipment__aside .btn_open.active + .block_open + .block_open
+  display: block !important
+
+.equipment__aside .btn_open.active svg
+  transform: rotate(-180deg)
+
+
+.equipment__content
+  min-width: 1373px
+  padding-top: 37px
+
+
+.nav_link
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  align-items: center
+  font-family: "DM Sans", sans-serif
+  margin-bottom: 53px
+  button
+    font-weight: 400
+    font-size: 16px
+    line-height: 100%
+    color: #546EDB
+    border: none
+    background: transparent
+    &.active
+      font-weight: 700
+      color: #6FE1B8
+
+.links
+  button
+    border: none
+    background: transparent
+
+.nav_link p
+  font-weight: 700
+  font-size: 16px
+  line-height: 100%
+  margin-right: 24px
+  color: #546EDB
+  opacity: 0.5
+
+.nav_link span
+  display: block
+  margin: 0 24px
+  font-size: 16px
+  line-height: 100%
+  color: #546EDB
+
+.nav_link a
+  font-weight: 400
+  font-size: 16px
+  line-height: 100%
+  color: #546EDB
+
+.nav_link a.active
+  font-weight: 700
+  color: #6FE1B8
+
+
+.equipment__box
+  display: flex
+  flex-wrap: wrap
+
+
+.pagination
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  margin-top: 60px
+
+.pagination .link
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 40px
+  height: 40px
+  font-style: normal
+  font-weight: 400
+  font-size: 24px
+  line-height: 28px
+  color: #858585
+  margin: 0 3px
+  background: rgba(255, 255, 255, 0.4)
+  border: 1px solid #FFFFFF
+  border-radius: 14px
+  transition: all 0.3s ease
+
+.pagination .link.active
+  background: #4088DD
+  border: 1px solid #4088DD
+  font-weight: 700
+  color: #FFFFFF
+
+.pagination .link:hover
+  background: #4088DD
+  border: 1px solid #4088DD
+  font-weight: 700
+  color: #FFFFFF
+
+.pagination span
+  display: block
+  width: 123px
+  height: 1px
+  background: #4088DD
+  margin: 0 15px
+
+.equipment__special
+  display: flex
+  flex-wrap: wrap
+  margin-bottom: 33px
+
+.equipment__special .product__wrap .title
+  padding: 0
+  text-align: center
+
+
+.equipment__special__check
+  width: 365px
+  height: 400px
+  position: relative
+
+.equipment__special__check input
+  position: relative
+  z-index: -1
+
+.equipment__special__check .product__wrap
+  position: absolute
+  top: 0
+  left: 0
+
+.equipment__special__check input:checked + .product__wrap::after
+  content: ""
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  border: 10px solid #F3F4F9
+
+.equipment__special__check input:checked + .product__wrap::before
+  content: ""
+  width: 25px
+  height: 25px
+  position: absolute
+  top: 37px
+  right: 35px
+  background: url('../../assets/images/check.svg') no-repeat center
+
+technique
+  padding-top: 74px
+  padding-bottom: 65px
+
+.technique .slick-prev
+  width: 24px
+  height: 14px
+  right: 65px
+  left: auto
+  top: -50px
+  background: url('../../assets/images/arrow-left.svg') no-repeat center
+
+.technique .slick-next
+  width: 24px
+  height: 14px
+  right: 24px
+  top: -50px
+  //background: url(../img/arrow-right.svg) no-repeat center;
+
+.technique .slick-next::before, .technique .slick-prev::before
+  display: none
+
+@keyframes rollout
+  0%
+    opacity: 0
+
+  100%
+    opacity: 100%
+
+.slick-dots li.slick-active button:before,
+.slick-dots li button:before
+  display: none
+
+.technique__block
+  width: 457px
+  height: 627px
+  background: #FFFFFF
+  border: 1px solid #F3F4F9
+  font-family: "Roboto", sans-serif
+  position: relative
+  animation: .4s rollout
+
+.technique__block .rating
+  height: 47px
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  align-items: center
+  background: #FFFFFF
+  border-radius: 0px 20px 20px 0px
+  padding: 0 19px
+  font-family: "Roboto", sans-serif
+  font-weight: 700
+  font-size: 20px
+  line-height: 23px
+  color: #F9B023
+  position: absolute
+  top: 14px
+  left: 0
+  z-index: 1
+
+.technique__block .rating svg
+  margin-right: 16px
+
+.technique__block .like
+  width: 30px
+  height: 30px
+  background: #fff
+  border-radius: 50%
+  border: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  position: absolute
+  top: 18px
+  right: 21px
+  z-index: 1
+
+.technique__block .like.active svg path
+  stroke: #F11147
+  fill: #F11147
+
+
+.technique__block .img
+  width: 100%
+  height: 244px
+  position: relative
+  overflow: hidden
+
+.technique__block .img img
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+.technique__block .content
+  padding: 21px 9px 30px 19px
+  height: 382px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+.technique__block .title_box
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 24px
+
+.technique__block .title
+  font-weight: 700
+  font-size: 20px
+  line-height: 23px
+  text-transform: uppercase
+  color: #414253
+  margin: 0
+  max-width: 205px
+
+.technique__block .status
+  display: flex
+  align-items: center
+  padding: 10px 23px 12px 19px
+  border-radius: 40px
+  font-weight: 500
+  font-size: 16px
+  line-height: 19px
+
+.technique__block .status svg
+  margin-right: 16px
+
+.technique__block .status.active
+  background: rgba(111, 225, 184, 0.1)
+  color: #6FE1B8
+
+.technique__block .status.notactive
+  background: rgba(247, 169, 40, 0.1)
+  color: #F7A928
+
+.technique__block .status.notactive svg path
+  fill: #F7A928
+
+.technique__block .h5
+  font-weight: 700
+  font-size: 16px
+  line-height: 19px
+  text-transform: capitalize
+  color: #414253
+  margin-bottom: 11px
+
+.technique__block .text
+  max-width: 417px
+  width: 100%
+  font-style: normal
+  font-weight: 400
+  font-size: 14px
+  line-height: 16px
+  color: #858585
+  margin-bottom: 27px
+
+.technique__block .btn
+  width: 100%
+  min-height: 50px
+  background: #546EDB
+  border-radius: 14px
+  border: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  font-family: "Gilroy", sans-serif
+  font-weight: 700
+  font-size: 18px
+  line-height: 22px
+  -webkit-transition: all 0.3s ease
+  transition: all 0.3s ease
+  color: #FFFFFF
+
+.technique__block .btn:hover
+  background: rgba(64, 136, 221, 0.1)
+  color: #546EDB
+  border: 1px solid #546EDB
+
+.radio_box
+  display: flex
+  margin-bottom: 21px
+
+.radio_box .radio
+  width: 50%
+  height: 60px
+  position: relative
+
+.radio_box .radio input
+  width: 0
+  height: 0
+  position: relative
+  z-index: -1
+
+.radio_box .radio label
+  display: block
+  width: 100%
+  height: 100%
+  border: 1px solid #E5E5E5
+  position: absolute
+  top: 0
+  left: 0
+  padding: 11px 12px 9px 12px
+  cursor: pointer
+
+.radio_box .radio label h5
+  font-family: "Roboto", sans-serif
+  font-weight: 700
+  font-size: 19px
+  line-height: 22px
+  text-transform: uppercase
+  color: #546EDB
+  margin: 0
+
+.radio_box .radio label span
+  display: block
+  font-family: "Roboto", sans-serif
+  font-weight: 400
+  font-size: 16px
+  line-height: 19px
+  color: #858585
+  margin-top: -2px
+
+.radio_box .radio label::after
+  content: ""
+  width: 15px
+  height: 15px
+  position: absolute
+  top: 14.5px
+  right: 12.5px
+  background: url('../../assets/images/check.svg') no-repeat center
+  display: none
+
+.radio_box .radio:nth-child(1) label
+  border-radius: 10px 0px 0px 10px
+  border-right-color: transparent
+  border-right: 1px solid #E5E5E5
+
+.radio_box .radio:nth-child(2) label
+  border-radius: 0px 10px 10px 0px
+  border-left-color: transparent
+  padding-left: 25px
+
+.radio_box .radio input:checked + label
+  border: 1px solid #4088DD
+  background: rgba(64, 136, 221, 0.1)
+
+.radio_box .radio input:checked + label::after
+  display: block
+
+.MuiPagination-root
+  margin-top: 60px
+  ul
+    justify-content: flex-end
+    li
+      button
+        display: flex
+        align-items: center
+        justify-content: center
+        font-style: normal
+        color: #858585
+        margin: 0 3px
+        background: rgba(255, 255, 255, 0.4)
+        border: 1px solid #FFFFFF
+        border-radius: 14px
+        transition: all 0.3s ease
+        font-weight: 400
+        font-size: 24px
+        color: #858585
+        line-height: 28px
+        width: 40px
+        height: 40px
+        box-shadow: none !important
+        &:hover
+          background: #4088DD
+          border: 1px solid #4088DD
+          font-weight: 700
+          color: #FFFFFF
+        &.Mui-selected
+          background: #4088DD
+          border: 1px solid #4088DD
+          font-weight: 700
+          color: #FFFFFF
+          position: relative
+          margin-right: 150px
+          &:after
+            content: ''
+            width: 123px
+            height: 1px
+            background: #4088DD
+            margin: 0 15px
+            position: absolute
+            left: 38px
+          &:hover
+            background: #4088DD
+            border: 1px solid #4088DD
+            font-weight: 700
+            color: #FFFFFF
+.mui-ripple-circle
+  display: none
+
+.block_title__price
+  color: #4088DD
+  margin-bottom: 10px
+  font-weight: 500
+  font-size: 16px
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button
+  -webkit-appearance: none
+
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus
+  appearance: none
+  -moz-appearance: textfield

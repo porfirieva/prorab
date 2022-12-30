@@ -1,0 +1,98 @@
+@font-face
+  font-family: 'Gilroy'
+  src: local('Gilroy'), url(/assets/fonts/Gilroy-Light.ttf) format('truetype')
+  font-weight: 300
+@font-face
+  font-family: 'Gilroy'
+  src: local('Gilroy'), url(/assets/fonts/Gilroy-Regular.ttf) format('truetype')
+  font-weight: 400
+@font-face
+  font-family: 'Gilroy'
+  src: local('Gilroy'), url(/assets/fonts/Gilroy-Medium.ttf) format('truetype')
+  font-weight: 500
+@font-face
+  font-family: 'Gilroy'
+  src: local('Gilroy'), url(/assets/fonts/Gilroy-Semibold.ttf) format('truetype')
+  font-weight: 600
+@font-face
+  font-family: 'Gilroy'
+  src: local('Gilroy'), url(/assets/fonts/Gilroy-Bold.ttf) format('truetype')
+  font-weight: 700
+@font-face
+  font-family: 'Gilroy'
+  src: local('Gilroy'), url(/assets/fonts/Gilroy-Extrabold.ttf) format('truetype')
+  font-weight: 800
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500&family=Roboto:wght@400;500;700;900&display=swap')
+
+$Roboto: 'Roboto'
+$Mplus: 'M PLUS Rounded 1c'
+
+*
+  box-sizing: border-box
+  outline: none
+  &:focus
+    outline: none
+
+#root
+  overflow-x: hidden
+
+body
+  font-family: 'Gilroy'
+  background: #F3F4F9
+  color: #000
+
+.container_wrap
+  padding: 0 40px
+
+.container
+  max-width: 1825px
+  width: 100%
+  margin: 0 auto
+
+ul
+  margin: 0
+  padding-left: 0
+  list-style-type: none
+
+a
+  text-decoration: none
+  transition: all 0.4s
+
+svg
+  path
+    transition: all 0.4s
+
+button
+  cursor: pointer
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  &:focus
+    outline: 0 !important
+
+.error__react_module
+  color: red
+  font-size: 18px
+
+h1, h2, h3, h4, h5, h6, p
+  margin-top: 0
+
+p
+  margin-bottom: 0
+
+.title_h3
+  font-family: "Gilroy", sans-serif
+  font-weight: 800
+  font-size: 30px
+  line-height: 134.75%
+  text-transform: uppercase
+  color: #000000
+  margin-bottom: 25px
+
+.main
+  min-height: 46.7vh
+
+.left
+  .item.active
+    color: #546EDB
+
+@import './media.sass'

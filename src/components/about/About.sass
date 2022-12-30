@@ -1,0 +1,152 @@
+.history_company__banner
+  height: 546px
+  background: url('../../assets/images/history-banner.png') no-repeat bottom
+  background-size: 100%
+  padding-top: 76px
+  overflow: hidden
+
+.history_company__banner .title
+  font-family: "Gilroy", sans-serif
+  font-weight: 800
+  font-size: 40px
+  line-height: 134.75%
+  text-transform: uppercase
+  color: #FFFFFF
+  margin-bottom: 75px
+
+.history_company__banner .line
+  position: relative
+  margin-bottom: 21px
+
+.history_company__banner .line img
+  position: relative
+  z-index: 2
+
+.history_company__banner .line::after
+  content: ""
+  width: 1080px
+  height: 2px
+  background: url('../../assets/images/line2.png') left
+  background-size: 100%
+  position: absolute
+  top: 11px
+  left: 59.9%
+
+.history_company__banner .box
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  padding-left: 32px
+
+.history_company__banner .box .wrap
+  width: 300px
+  margin-right: 70px
+  margin-top: -80px
+
+.history_company__banner .box .h5
+  width: 100%
+  margin-right: 70px
+  font-family: "Gilroy", sans-serif
+  font-weight: 800
+  font-size: 24px
+  line-height: 134.75%
+  text-transform: uppercase
+  color: #6FE1B8
+  margin-bottom: 45px
+
+.history_company__banner .box .text
+  font-family: "Gilroy", sans-serif
+  font-weight: 600
+  font-size: 18px
+  line-height: 134.75%
+  color: #FFFFFF
+
+.history_company
+  display: block
+
+
+.history_company__img
+  height: 375px
+  width: 100%
+
+.history_company__content
+  order: -1
+  width: 100%
+  height: auto
+  min-height: 290px
+  padding: 40px 22px 30px 23px
+
+.history_company__content .title
+  font-size: 16px
+  line-height: 134.75%
+  margin-bottom: 8px
+
+.history_company__content .text
+  font-size: 14px
+  line-height: 134.75%
+  margin-bottom: 12px
+
+.history_company__img img
+  position: absolute
+  top: 50%
+  left: 50%
+  -webkit-transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%)
+  height: 100%
+  width: auto
+  -webkit-transition: all 0.4s linear
+  transition: all 0.4s linear
+
+.history_company__box:hover .history_company__img img
+  transform: translate(-50%, -50%) scale(1.06)
+  transition: all 3s linear
+
+
+.history_company__content
+  width: 50%
+  height: 960px
+  background: #fff
+  padding: 180px 114px 100px 100px
+
+.history_company__content .title
+  font-family: "Gilroy", sans-serif
+  font-weight: 800
+  font-size: 28px
+  line-height: 134.75%
+  color: #000000
+  margin-bottom: 50px
+
+.history_company__content .text
+  font-family: "Gilroy", sans-serif
+  font-weight: 400
+  font-size: 22px
+  line-height: 134.75%
+  color: #000000
+  margin-bottom: 16px
+
+.history_company__box
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row-reverse
+  &:nth-child(odd)
+    flex-direction: row
+
+
+.history_company__img
+  width: 50%
+  height: 960px
+  position: relative
+  overflow: hidden
+
+.history_company__box
+  ul
+    list-style: inherit
+    margin-bottom: 50px
+  li
+    font-size: 24px
+    line-height: 30px
+
+.history_company__content h6.title
+  margin-bottom: 18px

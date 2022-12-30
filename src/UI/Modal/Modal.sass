@@ -1,0 +1,435 @@
+
+.modal
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 999
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, 0.6)
+  padding-top: 160px
+
+.modal_close
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+
+.modal.active
+  display: block
+
+.modal__card
+  max-width: 1025px
+  width: 100%
+  height: 614px
+  margin: 0 auto
+  background: #FFFFFF
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
+  border-radius: 30px
+  padding: 53px
+  padding-left: 80px
+  position: relative
+  z-index: 2
+
+.modal__card #open-calendar
+  cursor: pointer
+
+.modal__card .calendar
+  display: none
+  width: 510px
+  height: 360px
+  background: #F6F8F9
+  border-radius: 8px
+  position: absolute
+  top: 146px
+  right: 64px
+
+.modal__card .calendar.open
+  display: block
+
+.modal__card .phone
+  max-width: 353px
+  width: 100%
+  font-weight: 400
+  font-size: 22px
+  line-height: 26px
+  color: #171A23
+  margin-top: 123px
+  margin-bottom: 20px
+
+.modal__card .text
+  max-width: 353px
+  width: 100%
+  font-weight: 400
+  font-size: 22px
+  line-height: 26px
+  color: #171A23
+  margin-bottom: 30px
+
+.modal__card .soc
+  display: flex
+  margin-bottom: 65px
+
+.modal__card .soc .item
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 31px
+  height: 31px
+  margin-right: 15px
+
+.modal__card .soc .item img
+  width: 100%
+
+.modal__card .input_copy
+  width: 330px
+  height: 40px
+  position: relative
+  margin-bottom: 60px
+
+.modal__card .input_copy input
+  width: 100%
+  height: 40px
+  background: #F8FAFB
+  border: 0
+  padding: 0 17px
+  font-family: "Roboto", sans-serif
+  font-weight: 400
+  font-size: 14px
+  line-height: 16px
+  color: #101218
+
+.modal__card .input_copy .copy
+  position: absolute
+  top: 50%
+  right: 15px
+  transform: translateY(-50%)
+  font-family: "Roboto"
+  font-style: normal
+  font-weight: 500
+  font-size: 12px
+  line-height: 14px
+  text-decoration-line: underline
+  color: #242834
+  border: 0
+  background-color: transparent
+
+.modal__card .title
+  font-family: "Gilroy", sans-serif
+  font-weight: 900
+  font-size: 28px
+  line-height: 35px
+  color: #4088DD
+  margin-bottom: 36px
+
+.modal__card .img
+  position: absolute
+  top: 95px
+  right: 70px
+
+.modal__card .img2
+  position: absolute
+  top: 66px
+  right: 34px
+
+.modal__card .box
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  justify-content: space-between
+
+.modal__card .box .left
+  width: 360px
+
+.modal__card .box .right
+  width: 360px
+
+.modal__card .input
+  max-width: 100%
+  width: 100%
+  margin-bottom: 40px
+
+.modal__card .input .input_wrap
+  position: relative
+
+.modal__card .input .icon
+  position: absolute
+  bottom: 12px
+  right: 23px
+
+.modal__card .input h6
+  font-family: "Gilroy", sans-serif
+  font-weight: 400
+  font-size: 14px
+  line-height: 16px
+  color: #171A23
+  margin-bottom: 6px
+
+.modal__card .input input
+  width: 100%
+  height: 60px
+  background: #F6F8F9
+  border-radius: 5px
+  padding: 0 22px
+  font-family: "Gilroy", sans-serif
+  font-weight: 400
+  font-size: 16px
+  line-height: 19px
+  color: #171A23
+  border: 0
+
+.modal__card .input .input_box
+  display: flex
+  justify-content: space-between
+
+.modal__card .input .input_box input
+  width: 228px
+  padding-right: 15px
+
+.modal__card .input textarea
+  width: 100%
+  min-width: 100%
+  max-width: 100%
+  height: 170px
+  min-height: 170px
+  max-height: 170px
+  background: #F6F8F9
+  border-radius: 5px
+  padding: 20px
+  border: 0
+
+.modal__card .time
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  margin-bottom: 70px
+
+.modal__card .time h6
+  width: 100%
+  font-family: "Gilroy", sans-serif
+  font-weight: 400
+  font-size: 14px
+  line-height: 16px
+  color: #171A23
+  margin-bottom: 5px
+
+.modal__card .time span
+  font-family: "Roboto", sans-serif
+  font-weight: 100
+  font-size: 73px
+  line-height: 86px
+  color: #171A23
+  text-align: center
+  margin: 0 18px
+
+.modal__card .time input
+  width: 153px
+  height: 153px
+  background: #F6F8F9
+  border-radius: 5px
+  text-align: center
+  font-family: "Gilroy", sans-serif
+  font-weight: 100
+  font-size: 73px
+  line-height: 83px
+  color: #171A23
+  border: 0
+
+.modal__card2
+  height: 364px
+
+.modal__card2 .img2
+  top: 9px
+  right: 63px
+
+.modal__card3
+  max-width: 1025px
+
+.modal__btn
+  max-width: 343px
+  width: 100%
+  height: 60px
+  background: #546EDB
+  border-radius: 14px
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  align-items: center
+  justify-content: center
+  font-family: "Gilroy", sans-serif
+  font-weight: 700
+  font-size: 18px
+  line-height: 22px
+  color: #FFFFFF
+  border: 0
+
+
+.modal__btn2
+  max-width: 330px
+  width: 100%
+  height: 60px
+  background: #6FE1B8
+  border-radius: 14px
+  display: flex
+  align-items: center
+  justify-content: center
+  font-family: "Gilroy", sans-serif
+  font-weight: 700
+  font-size: 18px
+  line-height: 22px
+  color: #FFFFFF
+  border: 0
+
+.dateInputPick
+  position: relative
+  .modalClickCalendar
+    position: absolute
+    right: 22px
+    top: 40px
+    cursor: pointer
+
+.modal__card .box .right
+  width: 510px
+
+.Calendar__modal
+  position: relative
+  background: #F6F8F9
+  border-radius: 8px
+  padding-top: 10px
+  margin-top: 22px
+
+.nice-dates-day_month
+  top: -8px !important
+
+.nice-dates-week-header
+  box-shadow: none !important
+
+.nice-dates-day
+  font-weight: 600
+  font-size: 18px !important
+  line-height: 18px
+  letter-spacing: 1.25px
+  height: 56px !important
+
+.calendar__p
+  position: absolute
+  top: -44px
+  left: 26px
+
+.nice-dates-grid_container
+  padding-top: 10px
+
+.nice-dates-navigation_previous:before, .nice-dates-navigation_next:before
+  width: 8px !important
+  height: 8px !important
+
+.nice-dates-navigation_previous, .nice-dates-navigation_next
+  padding: 22px 6px !important
+
+.nice-dates-day:before
+  background-color: #6FE1B8 !important
+
+.nice-dates-day:after
+  border: 2px solid #6FE1B8 !important
+
+.nice-dates-day.-today
+  color: #6FE1B8
+
+.nice-dates-grid
+  height: 360px !important
+
+.nice-dates-navigation_current
+  font-size: 15px
+  margin-bottom: 4px
+
+.dn
+  display: none
+
+.respond_modal
+  color: #4088DD
+  position: absolute
+  margin-top: -28px
+
+.modal_overlay
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  top: 0
+  background: rgba(44, 42, 42, 0.65)
+  z-index: 10
+
+.modal_container
+  position: fixed
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  background: #fff
+  border-radius: 10px
+  z-index: 15
+  width: 450px
+  padding: 32px 44px 48px
+
+.modal____close
+  position: absolute
+  right: -70px
+  width: 70px
+  height: 70px
+  top: -10px
+
+.modal__title
+  margin-bottom: 18px
+  font-weight: 700
+  font-size: 34px
+  line-height: 130%
+  color: #000000
+
+.mobile_platforms
+  display: flex
+  justify-content: space-between
+
+.mobile_platform
+  width: 111px
+  height: 37px
+  background: #FFFFFF
+  border: 1px solid #546EDB
+  border-radius: 5px
+  padding: 2px
+  font-weight: 700
+  font-size: 10px
+  line-height: 115%
+  color: #546EDB
+  display: flex
+  align-items: center
+  cursor: pointer
+  &.active
+    background: #546EDB
+    color: #fff
+  img
+    width: 31px
+    min-width: 31px
+    height: auto
+    margin-right: 4px
+
+.mobile_qr_name
+  margin: 13px 0 10px
+  font-weight: 700
+  font-size: 24px
+  line-height: 130%
+  color: #546EDB
+  text-align: center
+
+.mobile_qr_image
+  background: #FFFFFF
+  border: 11px solid #546EDB
+  border-radius: 15px
+  height: 358px
+  width: 100%
+  padding: 9px
+
+.modal____close
+  cursor: pointer
+  transition: all 0.4s
+  &:hover
+    opacity: 0.8
