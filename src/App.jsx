@@ -89,55 +89,57 @@ const App = (props) => {
 
   return (
     <div className="index_page">
-      <MobileApp getMobileAppModal={getMobileAppModal} />
+      <AuthContextProvide>
+        <MobileApp getMobileAppModal={getMobileAppModal} />
 
-      <Header getModal={getModal} />
+        <Header getModal={getModal} />
 
-      <Modal userData={userData} idProductPage={idProductPage} />
+        <Modal userData={userData} idProductPage={idProductPage} />
 
-      <main className="main">
-        <Routes>
-          {!localStorage.getItem("token") && (
-            <Route path="*" element={<LoginMain />}></Route>
-          )}
-          {localStorage.getItem("token") && (
-            <>
-              <Route path="/" element={<MainPage />}></Route>
-              <Route path="/catalog" element={<Catalog />}></Route>
-              {category.map((item) => (
+        <main className="main">
+          <Routes>
+            {!localStorage.getItem("token") && (
+              <Route path="*" element={<LoginMain />}></Route>
+            )}
+            {localStorage.getItem("token") && (
+              <>
+                <Route path="/" element={<MainPage />}></Route>
+                <Route path="/catalog" element={<Catalog />}></Route>
+                {category.map((item) => (
+                  <Route
+                    key={item.id}
+                    path={`/catalog/type${item.type}`}
+                    element={
+                      <SpecialEquipCatalog
+                        h1={item.title}
+                        types={item.type}
+                      />
+                    }></Route>
+                ))}
                 <Route
-                  key={item.id}
-                  path={`/catalog/type${item.type}`}
+                  path="/cart/:id"
                   element={
-                    <SpecialEquipCatalog
-                      h1={item.title}
-                      types={item.type}
+                    <CartProduct
+                      onUserData={onUserData}
+                      getIdPage={getIdPage}
                     />
-                  }></Route>
-              ))}
-              <Route
-                path="/cart/:id"
-                element={
-                  <CartProduct
-                    onUserData={onUserData}
-                    getIdPage={getIdPage}
-                  />
-                }
-              />
-              <Route path="/about" element={<About />}></Route>
-              <Route path="/contacts" element={<Contacts />}></Route>
-              <Route path="/userTerm" element={<UserTerm />}></Route>
-              <Route path="/privacy" element={<Privacy />}></Route>
+                  }
+                />
+                <Route path="/about" element={<About />}></Route>
+                <Route path="/contacts" element={<Contacts />}></Route>
+                <Route path="/userTerm" element={<UserTerm />}></Route>
+                <Route path="/privacy" element={<Privacy />}></Route>
 
-              <Route
-                path="/lc/*"
-                element={<CabinetMainPage />}></Route>
-              <Route path="/admin/*" element={<Admin />}></Route>
-            </>
-          )}
-        </Routes>
-      </main>
-      <Footer />
+                <Route
+                  path="/lc/*"
+                  element={<CabinetMainPage />}></Route>
+                <Route path="/admin/*" element={<Admin />}></Route>
+              </>
+            )}
+          </Routes>
+        </main>
+        <Footer />
+      </AuthContextProvide>
     </div>
   );
 };

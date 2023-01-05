@@ -2,16 +2,16 @@ import '../cabinet.sass'
 import AdsTopLeft from "./AdsTopLeft";
 import AdsItems from "./AdsItems";
 import AdsRightItem from "./AdsRightItem";
-import {useState} from "react";
+import { useState } from "react";
 import CreateAds from "./createAds/CreateAds";
 
 
 const AdsMainPage = props => {
-    const [numberType, setNumberType] = useState(1);
+    const [numberType, setNumberType] = useState(0);
     const [idItem, setIdItem] = useState(0);
     const [create, setCreate] = useState(false)
 
-    const getNumberType = type => {
+    const numberTypeChange = type => {
         setNumberType(type);
     }
 
@@ -19,30 +19,28 @@ const AdsMainPage = props => {
         setIdItem(id);
     }
 
-    const createAdsHandler = () => {
+    const toggleCreateForm = () => {
         setCreate(prevState => !prevState)
     }
 
-    const infoAds = <div className="cabinet_ads">
-        <div className="cabinet_ads__left">
-            <button className="btn_save" onClick={createAdsHandler}>Создать</button>
-            <h6>Мои объявления</h6>
+    return create ? (
+        <CreateAds
+            numberType={numberType}
+            toggleCreateForm={toggleCreateForm}
+            onNumberTypeChange={numberTypeChange} />
+    ) : (
+        <div className="cabinet_ads">
+            <div className="cabinet_ads__left">
+                <button className="btn_save" onClick={toggleCreateForm}>Создать</button>
+                <h6>Мои объявления</h6>
 
-            <AdsTopLeft getNumberType={getNumberType}/>
-            <AdsItems numberType={numberType} getIdItem={getIdItem}/>
+                <AdsTopLeft numberType={numberType} onNumberTypeChange={numberTypeChange} />
+                <AdsItems numberType={numberType} getIdItem={getIdItem} />
 
+            </div>
+
+            <AdsRightItem idItem={idItem} />
         </div>
-
-        <AdsRightItem idItem={idItem}/>
-    </div>
-
-    return(
-        <>
-            {!create && infoAds}
-            {create &&  <CreateAds numberType={numberType}
-                                   createAdsHandler={createAdsHandler}
-                                   getNumberType={getNumberType}/>}
-        </>
     )
 }
 

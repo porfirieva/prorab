@@ -362,6 +362,8 @@
   transform: translate(-50%, -50%)
   width: 100%
   border-radius: 100%
+  object-fit: cover
+  height: 100%
 
 .select__image
   &:after
@@ -424,6 +426,8 @@
 
 .cabinet_ads__left .top
   display: flex
+  flex-wrap: wrap
+  gap: 10px
   margin-bottom: 27px
 
 .cabinet_ads__left .top .item
@@ -433,7 +437,6 @@
   background: #FFFFFF
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1)
   border-radius: 10px
-  margin-right: 10px
   padding-top: 13px
   padding-left: 15px
   border: 1px solid transparent
@@ -1239,7 +1242,7 @@
   background-color: #FFFFFF
 
 .cabinet__notifications__aside .request.red
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1)
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1)
 
 .cabinet__notifications__aside .text
   font-family: "Roboto", sans-serif
@@ -1670,7 +1673,6 @@
 .regulations__content .icon img
   margin-right: 25px
 
-
 .cabinet__chat
   width: 600px
   height: 817px
@@ -1899,8 +1901,7 @@
   background: #FFFFFF
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1)
   border-radius: 10px
-  padding-top: 13px
-  padding-left: 15px
+  padding: 10px
   border: 1px solid transparent
 
   -webkit-transition: all 0.2s ease
@@ -1955,7 +1956,7 @@
   color: #4088DD
 
 .create_ads__center
-  width: 785px
+  max-width: 785px
   min-height: 755px
   background: #FFFFFF
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1)
@@ -2160,6 +2161,7 @@
   font-size: 14px
   line-height: 16px
   color: #414253
+  resize: none
 
 .input_wrap .textarea::-webkit-input-placeholder
   color: #414253
@@ -2480,3 +2482,34 @@
   background: #F4F9FF
   border: 1px solid #4088DD
   box-shadow: 0 0 20px rgb(0 0 0 / 10%)
+
+.imagesMultiple
+  display: flex
+  gap: 10px
+  div
+    position: relative
+    width: 69px
+    height: 69px
+  img
+    width: 100%
+    height: 100%
+    border-radius: 10px
+    object-fit: cover
+  button
+    position: absolute
+    padding: 0
+    right: 2px
+    top: 0
+    border: none
+    outline: none
+    background-color: transparent
+// SMALL_
+@media(max-width: 1500px)
+  .cabinet__aside
+    width: 300px
+
+  .cabinet__content
+    flex-grow: 2
+
+  .create_ads__center
+    margin-right: 0
