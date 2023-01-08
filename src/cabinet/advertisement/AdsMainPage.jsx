@@ -1,23 +1,66 @@
 import '../cabinet.sass'
-import AdsTopLeft from "./AdsTopLeft";
+import TypeList from "./TypeList";
 import AdsItems from "./AdsItems";
-import AdsRightItem from "./AdsRightItem";
-import { useState } from "react";
+import PreviewAd from "./PreviewAd";
+import { useState, useContext, useEffect } from "react";
 import CreateAds from "./createAds/CreateAds";
+import { token } from "../../App";
+import AuthContext from "../../store/auth-context";
+import MainPage from './mobilePages/MainPage';
+import ChooseTypePage from './mobilePages/ChooseTypePage';
+import CreateFormPage from './mobilePages/CreateFormPage';
+import PreviewAdPage from './mobilePages/PreviewAdPage';
 
 
-const AdsMainPage = props => {
-    const [numberType, setNumberType] = useState(0);
-    const [idItem, setIdItem] = useState(0);
+const MobileAdsPage = ({ category }) => {
+    const [currentPage, setCurrentPage] = useState("MainPage");
+    const [type, setType] = useState(0);
+    const [adId, setAdId] = useState(0);
+
+    const onTypeChange = type => {
+        setType(type);
+    }
+    const onIdItemChange = id => {
+        setCurrentPage("PreviewAdPage")
+        setAdId(id);
+    }
+
+    if (currentPage === "MainPage") {
+        return (
+            <MainPage
+                category={category}
+                type={type}
+                onIdItemChange={onIdItemChange}
+                onPageChange={setCurrentPage}
+                onTypeChange={onTypeChange}
+            />
+        )
+    }
+
+    if (currentPage === "ChooseTypePage") {
+        return (
+            <ChooseTypePage category={category} onTypeChange={onTypeChange} onPageChange={setCurrentPage} />
+        )
+    }
+
+    if (currentPage === "CreateFormPage") {
+        return (
+            <CreateFormPage type={type} onPageChange={setCurrentPage} />
+        )
+    }
+
+    if (currentPage === "PreviewAdPage") {
+        return (
+            <PreviewAdPage id={adId} onPageChange={setCurrentPage} />
+        )
+    }
+}
+
+const DesktopAdsPage = ({ category }) => {
+    const [type, setType] = useState(0);
+    const [adId, setAdId] = useState(0);
     const [create, setCreate] = useState(false)
 
-    const numberTypeChange = type => {
-        setNumberType(type);
-    }
-
-    const getIdItem = id => {
-        setIdItem(id);
-    }
 
     const toggleCreateForm = () => {
         setCreate(prevState => !prevState)
@@ -25,23 +68,42 @@ const AdsMainPage = props => {
 
     return create ? (
         <CreateAds
-            numberType={numberType}
-            toggleCreateForm={toggleCreateForm}
-            onNumberTypeChange={numberTypeChange} />
+            category={category}
+            type={type}
+            onBack={toggleCreateForm}
+            onTypeChange={setType} />
     ) : (
         <div className="cabinet_ads">
             <div className="cabinet_ads__left">
                 <button className="btn_save" onClick={toggleCreateForm}>Создать</button>
                 <h6>Мои объявления</h6>
-
-                <AdsTopLeft numberType={numberType} onNumberTypeChange={numberTypeChange} />
-                <AdsItems numberType={numberType} getIdItem={getIdItem} />
-
+                <TypeList category={category} type={type} onTypeChange={setType} />
+                <AdsItems type={type} getIdItem={setAdId} id={adId} />
             </div>
-
-            <AdsRightItem idItem={idItem} />
+            <PreviewAd id={adId} />
         </div>
     )
+
+}
+
+const AdsMainPage = props => {
+    const [category, setCategory] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://cc19244api.tmweb.ru/category?filter[depth]=0`, {
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': token,
+            }
+        })
+            .then(res => res.json())
+            .then((result) => {
+                setCategory(result.data);
+            })
+    }, []);
+
+    const ctx = useContext(AuthContext)
+    return ctx.isMobile ? <MobileAdsPage category={category} /> : <DesktopAdsPage category={category} />
 }
 
 export default AdsMainPage;

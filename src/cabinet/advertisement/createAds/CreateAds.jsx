@@ -1,19 +1,19 @@
 import '../../cabinet.sass'
-import AdsTopLeft from "../AdsTopLeft";
+import TypeList from "../TypeList";
 import CreateAdsForm from "./CreateAdsForm";
 import { ArrowLeftIcon } from '../../../components/icons/ArrowLeftIcon';
 
-const CreateAds = ({ onNumberTypeChange, toggleCreateForm, numberType }) => {
+const CreateAds = ({ onTypeChange, onBack, type, category }) => {
     return (
         <div className="create_ads">
             <div className="create_ads__left">
-                <div className="create_ads__back" onClick={toggleCreateForm}>
+                <div className="create_ads__back" onClick={onBack}>
                     <ArrowLeftIcon />
                     Создать объявления
                 </div>
-                <AdsTopLeft numberType={numberType} onNumberTypeChange={onNumberTypeChange} />
+                <TypeList category={category} type={type} onTypeChange={onTypeChange} />
             </div>
-            <CreateAdsForm toggleCreateForm={toggleCreateForm} numberType={numberType} />
+            <CreateAdsForm onSuccess={onBack} type={type} />
         </div>
     )
 }

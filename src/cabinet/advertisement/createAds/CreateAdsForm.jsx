@@ -16,10 +16,10 @@ const typeMap = {
     2: 'недвижимость',
 }
 
-const convertTypeToString = (numberType) => typeMap[numberType];
+const convertTypeToString = (type) => typeMap[type];
 
 const CreateAdsForm = props => {
-    const { toggleCreateForm, numberType } = props;
+    const { onSuccess, type } = props;
     const [images, setImages] = useState([]);
     const [cityId, setCityIid] = useState('');
     const [category, setCategory] = useState(null);
@@ -30,7 +30,7 @@ const CreateAdsForm = props => {
 
     useEffect(() => {
         setCategoryParent(null);
-    }, [numberType])
+    }, [type])
 
     const loadCategoryParent = (inputValue, callback) => {
         // запрашиваем список для "Тип техники"
@@ -42,7 +42,7 @@ const CreateAdsForm = props => {
                 'Content-Type': "application/json",
                 'Authorization': token,
             },
-        }).get(`category?filter[type]=${props.numberType}&filter[depth]=1`)
+        }).get(`category?filter[type]=${type}&filter[depth]=1`)
             .then((response) => {
                 // console.log('category?filter[type]', response.data.data);
                 response.data.data.forEach((permission) => {
@@ -99,7 +99,7 @@ const CreateAdsForm = props => {
         let city = cityId === undefined ? '' : cityId
 
         formData.append('about', inputAbout.current.value);
-        formData.append('type', numberType);
+        formData.append('type', type);
         formData.append('category_id', category_id);
         formData.append('model', inputModel.current.value);
         formData.append('name', inputName.current.value);
@@ -123,7 +123,7 @@ const CreateAdsForm = props => {
             .then(({ data }) => {
                 if (data.success) {
                     console.log(data)
-                    toggleCreateForm();
+                    onSuccess();
                 } else {
                     console.error('не удалось')
                 }
@@ -138,7 +138,7 @@ const CreateAdsForm = props => {
     return (
         <form>
             <div className="create_ads__center">
-                <h6>Добавьте {convertTypeToString(numberType)}</h6>
+                <h6>Добавьте {convertTypeToString(type)}</h6>
 
                 {!isCreating && <button onClick={createAds} className="btn_publish">Опубликовать</button>}
 
@@ -153,7 +153,7 @@ const CreateAdsForm = props => {
                         <div className="input_wrap">
 
                             <AsyncSelect
-                                key={numberType}
+                                key={type}
                                 components={{ DropdownIndicator }}
                                 placeholder={"Тип техники"}
                                 cacheOptions

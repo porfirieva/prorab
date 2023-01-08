@@ -46,8 +46,8 @@ const AdsItems = props => {
     }
 
     useEffect(() => {
-
-        fetch(`https://cc19244api.tmweb.ru/object?filter[type]=${props.numberType}`,
+        setAds([])
+        fetch(`https://cc19244api.tmweb.ru/object?filter[type]=${props.type}`,
             {
                 headers: {
                     'Accept': 'application/json',
@@ -57,7 +57,7 @@ const AdsItems = props => {
             .then(res => res.json())
             .then(res => setAds(res.data))
 
-    }, [props.numberType, ctx.rerender]);
+    }, [props.type, ctx.rerender]);
 
     return (
         <div className='scroll_if_needed'>

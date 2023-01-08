@@ -100,6 +100,7 @@
 .cabinet__item span
   width: 51px
   height: 25px
+  margin-left: 10px
   display: flex
   align-items: center
   justify-content: center
@@ -110,7 +111,6 @@
   font-size: 14px
   line-height: 16px
   color: #FFFFFF
-  margin-left: auto
 
 .cabinet__item.active::after
   content: ""
@@ -378,6 +378,15 @@
 
 .cabinet_ads
   display: flex
+
+.create_ads__form-mobile
+  .create_ads__back
+    margin-bottom: 20px
+.cabinet_ads.mobile
+  display: flex
+  flex-direction: column
+  .create_ads__back
+    margin-bottom: 10px
 
 .name__error
   color: red

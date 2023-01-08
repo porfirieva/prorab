@@ -5,6 +5,7 @@ import {token} from "../App";
 const AuthContext = React.createContext({
     isContactModal: false,
     isModal: false,
+    isMobile: false,
     contactsHandleModal: () => {},
     closeModal: () => {},
     requestModal: () => {},
@@ -19,6 +20,7 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvide = (props) => {
+    const [isMobile, setIsMobile] = useState(false); // в зависимости от устройства пользователя
     const [isModal, setIsModal] = useState(false);
     const [isContactModal, setIsContactModal] = useState(false);
     const [isUserId, setUserId] = useState(0);
@@ -26,10 +28,12 @@ export const AuthContextProvide = (props) => {
     const [adsNumber, setAdsNumber] = useState(0);
     const [rerender, setRerender] = useState(false);
     const [closeMobileModal, setCloseMobileModal] = useState(false);
-    const [openAside, setOpenAside] = useState(true)
+    const [openAside, setOpenAside] = useState(!isMobile)
 
     const toggleAside = () => {
-        setOpenAside(!openAside)
+        if (isMobile) {
+            setOpenAside(!openAside)
+        }
     }
 
     const contactsHandleModal = () => {
@@ -85,8 +89,10 @@ export const AuthContextProvide = (props) => {
 
 
     return <AuthContext.Provider
-        value={{isContactModal: isContactModal,
+        value={{
+            isContactModal: isContactModal,
             isModal,
+            isMobile,
             isUserId,
             userData,
             adsNumber,

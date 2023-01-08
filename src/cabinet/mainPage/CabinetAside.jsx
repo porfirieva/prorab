@@ -20,7 +20,8 @@ const CabinetAside = props => {
     const [active, setActive] = useState(true);
 
     const clickRemove = () => {
-        setActive(false)
+        ctx.toggleAside()
+        setActive(false) //?
     }
 
     // Запрет обновления f5
