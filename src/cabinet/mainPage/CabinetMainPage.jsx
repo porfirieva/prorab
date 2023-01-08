@@ -1,15 +1,17 @@
 import '../cabinet.sass'
 import CabinetAside from "./CabinetAside";
 import CabinetInfo from "../cabinetInfo/CabinetInfo";
-import {Route, Routes} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {token} from "../../App";
+import { Route, Routes } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import AuthContext from "../../store/auth-context";
+import { token } from "../../App";
 import AdsMainPage from "../advertisement/AdsMainPage";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const CabinetMainPage = () => {
     const [dataUser, setDataUser] = useState({});
-    const [render, setRender] = useState(false)
+    const [render, setRender] = useState(false);
+    const ctx = useContext(AuthContext);
 
     const getRerender = () => {
         setRender(rerun => !rerun)
@@ -29,22 +31,22 @@ const CabinetMainPage = () => {
     }, [render])
 
 
-    return(
+    return (
 
         <section className="cabinet">
             <div className="cabinet__box">
-                <CabinetAside  data={dataUser}/>
-
+                {ctx.openAside && <CabinetAside data={dataUser} />}
+                {/* <CabinetAside data={dataUser} /> */}
                 <div className="cabinet__content">
-                    <button className="open-admin-menu">
+                    <button className="open-admin-menu" onClick={ctx.toggleAside}>
                         <div className="line">
                             <span></span><span></span><span></span>
                         </div>
                         Меню
-                </button>
+                    </button>
                     <Routes>
-                        <Route path='/' element={<CabinetInfo getRerender={getRerender} data={dataUser}/>}></Route>
-                        <Route path='/advertisement' element={<AdsMainPage/>}></Route>
+                        <Route path='/' element={<CabinetInfo getRerender={getRerender} data={dataUser} />}></Route>
+                        <Route path='/advertisement' element={<AdsMainPage />}></Route>
                     </Routes>
 
                 </div>

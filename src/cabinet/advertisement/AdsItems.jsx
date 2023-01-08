@@ -75,7 +75,7 @@ const AdsItems = props => {
                     <div className="img">
                         <img src={url + item.image} alt="" />
                     </div>
-                    <div>
+                    <div className='ads__descr_preview'>
                         <h3 className="title">{item.name}</h3>
                         <div className="radio_box">
                             <div className="radio">

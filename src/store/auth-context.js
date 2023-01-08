@@ -14,7 +14,8 @@ const AuthContext = React.createContext({
     isUserId: 0,
     userData: {},
     closeMobileAppModal: () => {},
-    closeMobileModal: false
+    closeMobileModal: false,
+    openAside: false,
 });
 
 export const AuthContextProvide = (props) => {
@@ -25,6 +26,11 @@ export const AuthContextProvide = (props) => {
     const [adsNumber, setAdsNumber] = useState(0);
     const [rerender, setRerender] = useState(false);
     const [closeMobileModal, setCloseMobileModal] = useState(false);
+    const [openAside, setOpenAside] = useState(true)
+
+    const toggleAside = () => {
+        setOpenAside(!openAside)
+    }
 
     const contactsHandleModal = () => {
         setIsModal(true);
@@ -68,11 +74,12 @@ export const AuthContextProvide = (props) => {
         })
             .then(res => res.json())
             .then((result) => {
-                const adsNumber = result.data.map(item => +item.objectsCountByType);
-                let reducer = adsNumber.reduce(function (sum, current){
-                    return sum + current
-                }, 0)
-                setAdsNumber(reducer);
+                // const adsNumber = result.data.map(item => +item.objectsCountByType);
+                // let reducer = adsNumber.reduce(function (sum, current){
+                //     return sum + current
+                // }, 0)
+                // setAdsNumber(reducer);
+                console.log(result)
             })
     }, [rerender])
 
@@ -90,6 +97,8 @@ export const AuthContextProvide = (props) => {
             closeModal,
             requestModal,
             closeMobileAppModal,
+            openAside,
+            toggleAside,
     }}
     >{props.children}</AuthContext.Provider>
 };
