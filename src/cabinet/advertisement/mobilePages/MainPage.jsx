@@ -1,5 +1,5 @@
-import TypeList from "../TypeList";
-import AdsItems from "../AdsItems";
+import TypeList from "../desktopPages/TypeList";
+import AdsItems from "../desktopPages/AdsItems";
 
 const MainPage = ({ category, onPageChange, type, onTypeChange, onIdItemChange }) => {
   return (

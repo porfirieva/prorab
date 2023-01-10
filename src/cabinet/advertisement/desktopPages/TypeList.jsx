@@ -1,5 +1,5 @@
-import '../cabinet.sass'
-import { url } from "../../components/catalog/specialEuipmentCatalog";
+import '../../cabinet.sass'
+import { url } from "../../../components/catalog/specialEuipmentCatalog";
 
 
 const TypeList = ({ onTypeChange, type, category }) => {

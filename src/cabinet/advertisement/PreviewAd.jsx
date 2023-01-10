@@ -4,7 +4,7 @@ import { token } from "../../App";
 import { url } from "../../components/catalog/specialEuipmentCatalog";
 import AuthContext from "../../store/auth-context";
 
-const PreviewAd = ({ id }) => {
+const PreviewAd = ({ id, onPageChange }) => {
     const ctx = useContext(AuthContext);
     const [product, setProduct] = useState({});
 
@@ -17,7 +17,6 @@ const PreviewAd = ({ id }) => {
         })
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
                 setProduct(res.data);
             });
     }, [id]);
@@ -105,7 +104,7 @@ const PreviewAd = ({ id }) => {
                             </div>
                         </div>
                         <div className="buttons">
-                            <button className="edit">
+                            <button className="edit" onClick={() => onPageChange("EditAdPage")}>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="18"

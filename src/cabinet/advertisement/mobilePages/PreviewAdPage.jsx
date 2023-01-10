@@ -10,7 +10,7 @@ const PreviewAdPage = ({ onPageChange, id }) => {
           Назад
         </div>
       </div>
-      <PreviewAd id={id} />
+      <PreviewAd id={id} onPageChange={onPageChange} />
     </div>
   )
 }

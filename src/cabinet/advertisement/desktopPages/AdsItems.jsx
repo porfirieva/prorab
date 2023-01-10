@@ -1,10 +1,10 @@
-import "../cabinet.sass";
+import "../../cabinet.sass";
 import { useContext, useEffect, useState } from "react";
-import { token } from "../../App";
-import AuthContext from "../../store/auth-context";
-import { url } from "../../components/catalog/specialEuipmentCatalog";
+import { token } from "../../../App";
+import AuthContext from "../../../store/auth-context";
+import { url } from "../../../components/catalog/specialEuipmentCatalog";
 
-const AdsItems = ({ getIdItem, type, onEdit }) => {
+const AdsItems = ({ getIdItem, type, onPageChange }) => {
     const ctx = useContext(AuthContext);
     const [ads, setAds] = useState([]);
     const [isActive, setActive] = useState(0);
@@ -18,10 +18,6 @@ const AdsItems = ({ getIdItem, type, onEdit }) => {
     const showOptions = (id) => {
         setActive(id);
         setActiveToggle((prev) => !prev);
-    };
-
-    const editHandler = (id) => {
-        onEdit(id);
     };
 
     const deactivateHandler = (event) => {
@@ -74,7 +70,7 @@ const AdsItems = ({ getIdItem, type, onEdit }) => {
                                 <span></span>
                             </button>
                             <div className="block">
-                                <a className="link redact" onClick={() => editHandler(item.id)}>
+                                <a className="link redact" onClick={() => onPageChange("EditAdPage")}>
                                     Редактировать
                                 </a>
                                 <a className="link deactivate" onClick={deactivateHandler}>

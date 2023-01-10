@@ -33,17 +33,19 @@ const InputPhoto = ({ images, onLoad, onDelete, maxCount = 1, }) => {
                 </label>
             </div>
             <div className="imagesMultiple">
-                {images.map(file => {
-                    return (
-                        <div key={file.name}>
-                            <img src={URL.createObjectURL(file)} alt='' />
-                            <button onClick={(e) => deleteImg(e, file)}>
-                                <DeleteIcon />
-                            </button>
-                        </div>
+                {images !== undefined &&
+                    images.map(file => {
+                        return (
+                            <div key={file.name}>
+                                <img src={URL.createObjectURL(file)} alt='' />
+                                <button onClick={(e) => deleteImg(e, file)}>
+                                    <DeleteIcon />
+                                </button>
+                            </div>
 
-                    )
-                })}
+                        )
+                    })
+                }
             </div>
         </div>
     )

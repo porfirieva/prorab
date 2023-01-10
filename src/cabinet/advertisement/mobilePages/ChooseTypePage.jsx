@@ -1,4 +1,4 @@
-import TypeList from "../TypeList";
+import TypeList from "../desktopPages/TypeList";
 import { ArrowLeftIcon } from '../../../components/icons/ArrowLeftIcon';
 
 

@@ -1,13 +1,17 @@
 import { useEffect, useState, useRef } from "react";
-import InputPhoto from "./createAds/InputPhoto";
+import InputPhoto from "../createAds/InputPhoto";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
-import { token } from "../../App";
-import SelectsDrop, { customStyles } from "../../components/header/headerTop/headerSelects/selects";
-import { DropdownIndicator } from "../../components/header/headerTop/headerSelects/selects";
-import Input from "../../UI/Input";
-import { CalendarIcon } from "../../components/icons/CalendarIcon";
-import { ArrowLeftIcon } from "../../components/icons/ArrowLeftIcon";
+import { token } from "../../../App";
+import SelectsDrop, { customStyles } from "../../../components/header/headerTop/headerSelects/selects";
+import { DropdownIndicator } from "../../../components/header/headerTop/headerSelects/selects";
+import Input from "../../../UI/Input";
+import { CalendarIcon } from "../../../components/icons/CalendarIcon";
+import { ArrowLeftIcon } from "../../../components/icons/ArrowLeftIcon";
+import { url } from "../../../components/catalog/specialEuipmentCatalog";
+import { DeleteIcon } from '../../../components/icons/DeleteIcon'
+
+
 
 const useFetchAd = (id) => {
     const [ad, setAd] = useState({});
@@ -22,7 +26,6 @@ const useFetchAd = (id) => {
         })
             .then((res) => res.json())
             .then(({ data }) => {
-                // console.log('edit', data)
                 setAd(data)
             });
     }, [id]);
@@ -31,12 +34,11 @@ const useFetchAd = (id) => {
     return ad
 }
 
-
-
-const EditAd = ({ id, onBack }) => {
+const EditAd = ({ id, onPageChange }) => {
     const ad = useFetchAd(id);
 
-    const [images, setImages] = useState([]);
+    const [currentImages, setCurrentImages] = useState(null);
+    const [downloadImages, setDownloadImages] = useState([]);
     const [cityId, setCityIid] = useState("");
     const [regionId, setRegionIid] = useState("");
     const [countryId, setCountryId] = useState("");
@@ -109,24 +111,23 @@ const EditAd = ({ id, onBack }) => {
             });
     };
 
-
     const saveAds = (event) => {
         event.preventDefault();
         setIsCreating(true);
 
         const formData = new FormData();
         let category_id = category === null ? "" : category.value;
-        let selected_images = images.length === 0 ? null : images[0];
+        let selected_images = currentImages === null ? null : (downloadImages === undefined ? null : downloadImages[0]);
         let city = cityId === undefined ? "" : cityId;
 
         console.log({
-            about: inputAbout.current.value,
-            type: ad.type,
-            category_id: category_id,
-            model: inputModel.current.value,
-            name: inputName.current.value,
-            price_1: inputPriceHour.current.value,
-            city_id: city,
+            // about: inputAbout.current.value,
+            // type: ad.type,
+            // category_id: category_id,
+            // model: inputModel.current.value,
+            // name: inputName.current.value,
+            // price_1: inputPriceHour.current.value,
+            // city_id: city,
             image: selected_images,
         });
         // formData.append("about", inputAbout.current.value);
@@ -160,16 +161,30 @@ const EditAd = ({ id, onBack }) => {
         //     });
     };
 
+
     const inputName = useRef();
     const inputModel = useRef();
     const inputPriceHour = useRef();
     const inputPriceDay = useRef();
     const inputAbout = useRef();
 
+    useEffect(() => {
+        setCurrentImages(ad.image)
+    }, [ad])
+
+    const deleteCurrentImage = (e) => {
+        if (currentImages === undefined) {
+            return
+        }
+        e.preventDefault()
+
+        setCurrentImages(null)
+    }
+
     return (
         <form>
             <div className="create_ads__center edit_ads__center">
-                <div className="create_ads__back" onClick={() => onBack(0)}>
+                <div className="create_ads__back" onClick={() => onPageChange("MainPage")}>
                     <ArrowLeftIcon />
                     <h6>Редактировать</h6>
                 </div>
@@ -177,7 +192,20 @@ const EditAd = ({ id, onBack }) => {
                     Сохранить
                 </button>
 
-                <InputPhoto images={images} onLoad={setImages} onDelete={setImages} />
+                {currentImages !== undefined && (currentImages !== null) &&
+                    <div className="imagesMultiple">
+                        <div className="input_foto_wrap">
+                            <img src={url + currentImages} alt='' />
+                            <button onClick={(e) => deleteCurrentImage(e)}>
+                                <DeleteIcon />
+                            </button>
+                        </div>
+                    </div>
+                }
+                {currentImages === null &&
+                    <InputPhoto images={downloadImages} onLoad={setDownloadImages} onDelete={setDownloadImages} />
+                }
+
 
                 <div className="create_ads__box">
                     <div>
@@ -295,7 +323,7 @@ const EditAd = ({ id, onBack }) => {
                 </div>
                 <button className="btn_save">Сохранить</button>
             </div>
-        </form>
+        </form >
     );
 };
 
