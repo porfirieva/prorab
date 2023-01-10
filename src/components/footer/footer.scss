@@ -15,14 +15,15 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-    -ms-flex-align: center;
-      align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-    -ms-flex-pack: center;
-      justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   width: 134px;
   height: 50px;
 }
+
 .footer__logo img {
   width: 100%;
 }
@@ -32,12 +33,12 @@
   display: -ms-flexbox;
   display: flex;
   margin-left: auto;
-  padding-right: 140px;
 }
 
 .footer__nav {
   width: 246px;
 }
+
 .footer__nav .item {
   display: block;
   font-weight: 400;
@@ -48,11 +49,12 @@
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
+
 .footer__nav .item:hover {
   color: #4088DD;
 }
 
-.footer__nav .item.active{
+.footer__nav .item.active {
   color: #4088DD;
 }
 
@@ -65,6 +67,7 @@
   width: 410px;
   margin-left: 188px;
 }
+
 .footer__contacts .title {
   font-weight: 700;
   font-size: 16px;
@@ -72,6 +75,7 @@
   color: #FFFFFF;
   margin-bottom: 17px;
 }
+
 .footer__contacts .phone {
   font-weight: 400;
   font-size: 26px;
@@ -80,19 +84,22 @@
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
+
 .footer__contacts .phone:hover {
   color: #4088DD;
 }
+
 .footer__contacts .box {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-      justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin-top: 30px;
 }
+
 .footer__contacts .link {
   width: 200px;
   height: 60px;
@@ -102,9 +109,9 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-    -ms-flex-align: center;
-      align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-    -ms-flex-pack: center;
-      justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
