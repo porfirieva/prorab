@@ -66,24 +66,24 @@ export const AuthContextProvide = (props) => {
       });
   }, []);
 
-  useEffect(() => {
-    fetch(`https://cc19244api.tmweb.ru/category?filter[depth]=0`, {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        const adsNumber = result.data.map(
-          (item) => +item.objectsCountByType
-        );
-        let reducer = adsNumber.reduce(function (sum, current) {
-          return sum + current;
-        }, 0);
-        setAdsNumber(reducer);
-      });
-  }, [rerender]);
+  // useEffect(() => {
+  //   fetch(`https://cc19244api.tmweb.ru/category?filter[depth]=0`, {
+  //     headers: {
+  //       Accept: "application/json",
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       const adsNumber = result.data.map(
+  //         (item) => +item.objectsCountByType
+  //       );
+  //       let reducer = adsNumber.reduce(function (sum, current) {
+  //         return sum + current;
+  //       }, 0);
+  //       setAdsNumber(reducer);
+  //     });
+  // }, [rerender]);
 
   return (
     <AuthContext.Provider

@@ -1,9 +1,9 @@
 import '../../header.sass';
-import {useEffect, useReducer, useState} from "react";
+import { useEffect, useReducer, useState } from "react";
 import { components } from 'react-select';
 import AsyncSelect from "react-select/async";
 import axios from "axios";
-import {token} from "../../../../App";
+import { token } from "../../../../App";
 
 
 export const customStyles = {
@@ -34,7 +34,7 @@ export const customStyles = {
         'lineHeight': '16px',
         'color': '#414253',
     }),
-    indicatorSeparator: () =>(
+    indicatorSeparator: () => (
         {
             display: "none",
         }
@@ -47,8 +47,8 @@ export const DropdownIndicator = (props) => {
     const caretClass = menuIsOpen ? 'caret-up' : 'caret-down';
     return (
         <components.DropdownIndicator {...props}>
-            <div  className={`${caretClass}`}>
-                <svg width="16" height="10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.11 3.945 6.435 9.27a2.048 2.048 0 0 0 2.899 0l5.325-5.325c1.295-1.296.37-3.516-1.46-3.516H2.55c-1.83 0-2.735 2.22-1.44 3.516Z" fill="#414253"/></svg>
+            <div className={`${caretClass}`}>
+                <svg width="16" height="10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.11 3.945 6.435 9.27a2.048 2.048 0 0 0 2.899 0l5.325-5.325c1.295-1.296.37-3.516-1.46-3.516H2.55c-1.83 0-2.735 2.22-1.44 3.516Z" fill="#414253" /></svg>
             </div>
         </components.DropdownIndicator>
     );
@@ -60,35 +60,35 @@ const initialCount = {
 }
 
 const reducer = (state, action) => {
-    switch (action.type){
+    switch (action.type) {
         case 'plus':
-            return {city: state.city + 1, region: state.region + 1}
+            return { city: state.city + 1, region: state.region + 1 }
     }
 }
 
 const SelectsDrop = props => {
 
-const [state, dispatch] = useReducer(reducer, initialCount); // Нужно для ререндера селектов
-const [selectedCountry, setSelectedCountry] = useState('');
-const [selectedRegion, setSelectedRegion] = useState('');
-const [selectedCity, setSelectedCity] = useState('');
+    const [state, dispatch] = useReducer(reducer, initialCount); // Нужно для ререндера селектов
+    const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedRegion, setSelectedRegion] = useState('');
+    const [selectedCity, setSelectedCity] = useState('');
 
-const handleCountry = (value) =>{
-    setSelectedCountry(value)
-    dispatch({type: 'plus'});
-    setSelectedRegion('');
-    setSelectedCity('');
-}
+    const handleCountry = (value) => {
+        setSelectedCountry(value)
+        dispatch({ type: 'plus' });
+        setSelectedRegion('');
+        setSelectedCity('');
+    }
 
-const handleRegion = value =>{
-    setSelectedRegion(value);
-    dispatch({type: 'plus'})
-    setSelectedCity('');
-}
+    const handleRegion = value => {
+        setSelectedRegion(value);
+        dispatch({ type: 'plus' })
+        setSelectedCity('');
+    }
 
-const handleCity = value =>{
-    setSelectedCity(value);
-}
+    const handleCity = value => {
+        setSelectedCity(value);
+    }
     useEffect(() => {
         props.getCity(selectedCity);
     }, [selectedCity])
@@ -117,7 +117,7 @@ const handleCity = value =>{
     }
 
     const loadOptions2 = (inputValue, callback) => {
-    let options = []
+        let options = []
         axios.create({
             baseURL: 'https://cc19244api.tmweb.ru/',
             headers: {
@@ -160,50 +160,50 @@ const handleCity = value =>{
             })
     }
 
-        return (
-            <div className="city__select">
-                {/*{selectedCountry.value},*/}
-                {/*{selectedRegion.value},*/}
+    return (
+        <div className="city__select">
+            {/*{selectedCountry.value},*/}
+            {/*{selectedRegion.value},*/}
 
-                <AsyncSelect
-                    components={{DropdownIndicator}}
-                    placeholder={"Выбор страны"}
-                    cacheOptions
-                    defaultOptions
-                    styles={customStyles}
-                    value={selectedCountry}
-                    onChange={handleCountry}
-                    loadOptions={loadOptions}
-                    noOptionsMessage={() => ''}
-                />
+            <AsyncSelect
+                components={{ DropdownIndicator }}
+                placeholder={"Выбор страны"}
+                cacheOptions
+                defaultOptions
+                styles={customStyles}
+                value={selectedCountry}
+                onChange={handleCountry}
+                loadOptions={loadOptions}
+                noOptionsMessage={() => ''}
+            />
 
-                <AsyncSelect
-                    key={state.region}
-                    components={{DropdownIndicator}}
-                    placeholder={"Выбрать регион"}
-                    cacheOptions
-                    defaultOptions
-                    styles={customStyles}
-                    value={selectedRegion}
-                    onChange={handleRegion}
-                    loadOptions={loadOptions2}
-                    noOptionsMessage={() => 'Выберите страну'}
-                />
+            <AsyncSelect
+                key={state.region}
+                components={{ DropdownIndicator }}
+                placeholder={"Выбрать регион"}
+                cacheOptions
+                defaultOptions
+                styles={customStyles}
+                value={selectedRegion}
+                onChange={handleRegion}
+                loadOptions={loadOptions2}
+                noOptionsMessage={() => 'Выберите страну'}
+            />
 
-                <AsyncSelect
-                    key={state.city}
-                    components={{DropdownIndicator}}
-                    placeholder={"Город"}
-                    cacheOptions
-                    defaultOptions
-                    styles={customStyles}
-                    value={selectedCity}
-                    onChange={handleCity}
-                    loadOptions={loadOptions3}
-                    noOptionsMessage={() => 'Выберите регион'}
-                />
-            </div>
-        )
+            <AsyncSelect
+                key={state.city}
+                components={{ DropdownIndicator }}
+                placeholder={"Город"}
+                cacheOptions
+                defaultOptions
+                styles={customStyles}
+                value={selectedCity}
+                onChange={handleCity}
+                loadOptions={loadOptions3}
+                noOptionsMessage={() => 'Выберите регион'}
+            />
+        </div>
+    )
 
 }
 export default SelectsDrop;

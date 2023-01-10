@@ -9,15 +9,8 @@ import Input from "../../UI/Input";
 import { CalendarIcon } from "../../components/icons/CalendarIcon";
 import { ArrowLeftIcon } from "../../components/icons/ArrowLeftIcon";
 
-const EditAd = ({ id, type, onBack }) => {
-    const [images, setImages] = useState([]);
-    const [category, setCategory] = useState();
-    const [cityId, setCityIid] = useState("");
-    const [regionId, setRegionIid] = useState("");
-    const [countryId, setCountryId] = useState("");
-    const [dataObject, setDataObject] = useState({});
-    const [isCreating, setIsCreating] = useState(false);
-    const [categoryParent, setCategoryParent] = useState();
+const useFetchAd = (id) => {
+    const [ad, setAd] = useState({});
 
     useEffect(() => {
         fetch(`https://cc19244api.tmweb.ru/object/${id}?expand=category, city.region`, {
@@ -28,15 +21,35 @@ const EditAd = ({ id, type, onBack }) => {
             },
         })
             .then((res) => res.json())
-            .then((res) => {
-                setDataObject(res.data);
+            .then(({ data }) => {
+                // console.log('edit', data)
+                setAd(data)
             });
-    }, []);
+    }, [id]);
+
+
+    return ad
+}
+
+
+
+const EditAd = ({ id, onBack }) => {
+    const ad = useFetchAd(id);
+
+    const [images, setImages] = useState([]);
+    const [cityId, setCityIid] = useState("");
+    const [regionId, setRegionIid] = useState("");
+    const [countryId, setCountryId] = useState("");
+    const [isCreating, setIsCreating] = useState(false);
+
+    const [category, setCategory] = useState(null);
+    const [categoryParent, setCategoryParent] = useState(null);
 
     const loadCategoryParent = (inputValue, callback) => {
         // запрашиваем список для "Тип техники"
-        let options = [];
-
+        if (ad.type === undefined) {
+            return;
+        }
         axios
             .create({
                 baseURL: "https://cc19244api.tmweb.ru/",
@@ -46,15 +59,21 @@ const EditAd = ({ id, type, onBack }) => {
                     Authorization: token,
                 },
             })
-            .get(`category?filter[type]=${type}&filter[depth]=1`)
-            .then((response) => {
-                response.data.data.forEach((permission) => {
-                    options.push({
-                        label: permission.title,
-                        value: permission.id,
-                    });
-                    callback(options.filter((i) => i.label.toLowerCase().includes(inputValue.toLowerCase())));
-                });
+            .get(`category?filter[type]=${ad.type}&filter[depth]=1`)
+            .then(({ data }) => {
+                const categoryParent = data.data.find((parent) => parent.id === ad.category.parent_id);
+                setCategoryParent({
+                    label: categoryParent?.title,
+                    value: categoryParent?.id,
+                })
+                callback(
+                    data.data
+                        .map(({ title, id }) => ({
+                            label: title,
+                            value: id,
+                        }))
+                        .filter(({ label }) => label.toLowerCase().includes(inputValue.toLowerCase()))
+                );
             });
     };
 
@@ -74,6 +93,11 @@ const EditAd = ({ id, type, onBack }) => {
             })
             .get(`category?filter[parent_id]=${categoryParent.value}`)
             .then(({ data }) => {
+                const category = data.data.find((item) => item.id === ad.category_id);
+                setCategory({
+                    label: category?.title,
+                    value: category?.id
+                })
                 callback(
                     data.data
                         .map(({ title, id }) => ({
@@ -85,22 +109,7 @@ const EditAd = ({ id, type, onBack }) => {
             });
     };
 
-    useEffect(() => {
-        setCategoryParent({
-            value: dataObject.category?.parent_id,
-        });
 
-        setCategory({
-            label: dataObject.category?.title,
-            value: dataObject.category?.id,
-        });
-
-        setCountryId({
-            // label: dataObject.category?.title,
-            value: dataObject.city?.region.country_id,
-        });
-    }, [dataObject]);
-    // console.log(categoryParent);
     const saveAds = (event) => {
         event.preventDefault();
         setIsCreating(true);
@@ -112,7 +121,7 @@ const EditAd = ({ id, type, onBack }) => {
 
         console.log({
             about: inputAbout.current.value,
-            type: type,
+            type: ad.type,
             category_id: category_id,
             model: inputModel.current.value,
             name: inputName.current.value,
@@ -168,13 +177,13 @@ const EditAd = ({ id, type, onBack }) => {
                     Сохранить
                 </button>
 
-                {/* <InputPhoto images={images} onLoad={setImages} onDelete={setImages} /> */}
+                <InputPhoto images={images} onLoad={setImages} onDelete={setImages} />
 
                 <div className="create_ads__box">
                     <div>
                         <div className="input_wrap">
                             <AsyncSelect
-                                key={type}
+                                key={ad.type}
                                 components={{ DropdownIndicator }}
                                 placeholder={"Тип техники"}
                                 cacheOptions
@@ -210,7 +219,7 @@ const EditAd = ({ id, type, onBack }) => {
                                 type="text"
                                 placeholder="Название техники"
                                 ref={inputName}
-                                defaultValue={dataObject.name}></Input>
+                                defaultValue={ad.name}></Input>
                         </div>
                     </div>
                     <div>
@@ -220,7 +229,7 @@ const EditAd = ({ id, type, onBack }) => {
                                 type="text"
                                 placeholder="Модель"
                                 ref={inputModel}
-                                defaultValue={dataObject.model}></Input>
+                                defaultValue={ad.model}></Input>
                         </div>
                     </div>
                     <div>
@@ -230,7 +239,7 @@ const EditAd = ({ id, type, onBack }) => {
                                 type="number"
                                 placeholder="Стоимость услуги"
                                 ref={inputPriceHour}
-                                defaultValue={dataObject.price_1}></Input>
+                                defaultValue={ad.price_1}></Input>
                             <span className="span">за час</span>
                         </div>
                     </div>
@@ -241,7 +250,7 @@ const EditAd = ({ id, type, onBack }) => {
                                 type="number"
                                 placeholder="Стоимость услуги"
                                 ref={inputPriceDay}
-                                defaultValue={dataObject.price_2}></Input>
+                                defaultValue={ad.price_2}></Input>
                             <span className="span">за смену</span>
                         </div>
                     </div>
@@ -260,7 +269,7 @@ const EditAd = ({ id, type, onBack }) => {
                             ref={inputAbout}
                             className="textarea"
                             placeholder="Технические характеристики"
-                            defaultValue={dataObject.about}></Input>
+                            defaultValue={ad.about}></Input>
                     </div>
                 </div>
 
