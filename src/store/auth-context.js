@@ -13,7 +13,7 @@ const AuthContext = React.createContext({
     adsNumber: 0,
     isUserId: 0,
     userData: {},
-    openAside: false,
+    openAside: true,
 });
 
 export const AuthContextProvide = (props) => {
@@ -24,7 +24,7 @@ export const AuthContextProvide = (props) => {
     const [userData, setUserData] = useState({});
     const [adsNumber, setAdsNumber] = useState(0);
     const [rerender, setRerender] = useState(false);
-    const [openAside, setOpenAside] = useState(!isMobile);
+    const [openAside, setOpenAside] = useState(true);
 
     const toggleAside = () => {
         if (isMobile) {
@@ -69,8 +69,10 @@ export const AuthContextProvide = (props) => {
         window.addEventListener("resize", updateDimensions);
         if (widthScreen >= 1024) {
             setIsMobile(false);
+            setOpenAside(true);
         } else {
             setIsMobile(true);
+            setOpenAside(false);
         }
         return () => window.removeEventListener("resize", updateDimensions);
     }, [widthScreen]);

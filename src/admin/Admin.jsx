@@ -2,7 +2,7 @@ import AdminAside from "./aside/AdminAside";
 // import '../cabinet.sass'
 import AdminInfo from "./main/AdminInfo";
 import { Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import AdminObjects from "./main/AdminObjects";
 import AdminOneObject from "./main/AdminOneObject";
 import AdminUsers from "./main/AdminUsers";
@@ -16,114 +16,102 @@ import AdminMailing from "./main/AdminMailing";
 import AdminRoles from "./main/AdminRoles";
 import AdminStatistic from "./main/AdminStatistic";
 import { token } from "../App";
+import AuthContext from "../store/auth-context";
 
 const Admin = () => {
-  const [currentUser, setCurrentUser] = useState({});
-  const [dataObjects, setDataObjects] = useState({});
-  const [dataUsers, setDataUsers] = useState({});
-  const [dataCategory, setDataCategory] = useState({});
+    const ctx = useContext(AuthContext);
 
-  console.log(dataCategory);
-  //данные авторизированного пользователя
-  useEffect(() => {
-    fetch("https://cc19244api.tmweb.ru/user/identity?mark=account", {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        Accept: "application/json",
-        Authorization: token,
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setCurrentUser(result.data);
-      });
-  }, []);
+    const [currentUser, setCurrentUser] = useState({});
+    const [dataObjects, setDataObjects] = useState({});
+    const [dataUsers, setDataUsers] = useState({});
+    const [dataCategory, setDataCategory] = useState({});
 
-  //данные  объявлений
-  useEffect(() => {
-    fetch("https://cc19244api.tmweb.ru/object?expand=user,city", {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        Accept: "application/json",
-        Authorization: token,
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setDataObjects(result.data);
-      });
-  }, []);
+    //данные авторизированного пользователя
+    useEffect(() => {
+        fetch("https://cc19244api.tmweb.ru/user/identity?mark=account", {
+            method: "GET",
+            crossDomain: true,
+            headers: {
+                Accept: "application/json",
+                Authorization: token,
+            },
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                setCurrentUser(result.data);
+            });
+    }, []);
 
-  //данные всех пользователей
-  useEffect(() => {
-    fetch("https://cc19244api.tmweb.ru/user?expand=account", {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        Accept: "application/json",
-        Authorization: token,
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setDataUsers(result.data);
-      });
-  }, []);
+    //данные  объявлений
+    useEffect(() => {
+        fetch("https://cc19244api.tmweb.ru/object?expand=user,city", {
+            method: "GET",
+            crossDomain: true,
+            headers: {
+                Accept: "application/json",
+                Authorization: token,
+            },
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                setDataObjects(result.data);
+            });
+    }, []);
 
-  //данные  категорий
-  useEffect(() => {
-    fetch("https://cc19244api.tmweb.ru/category?filter[depth]=0", {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        Accept: "application/json",
-        Authorization: token,
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setDataCategory(result.data);
-      });
-  }, []);
+    //данные всех пользователей
+    useEffect(() => {
+        fetch("https://cc19244api.tmweb.ru/user?expand=account", {
+            method: "GET",
+            crossDomain: true,
+            headers: {
+                Accept: "application/json",
+                Authorization: token,
+            },
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                setDataUsers(result.data);
+            });
+    }, []);
 
-  return (
-    <section className="cabinet">
-      <div className="cabinet__box">
-        <AdminAside data={currentUser} />
-        <div className="cabinet__content">
-          <button className="open-admin-menu">
-            <div className="line">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            Меню
-          </button>
-          <Routes>
-            <Route
-              path="/"
-              element={<AdminInfo data={currentUser} />}></Route>
-            <Route
-              path="/objects"
-              element={<AdminObjects data={dataObjects} />}></Route>
-            <Route
-              path="/objects/:id"
-              element={<AdminOneObject />}></Route>
-            <Route
-              path="/users"
-              element={<AdminUsers data={dataUsers} />}></Route>
-            <Route
-              path="/users/:id"
-              element={<AdminOneUser />}></Route>
-            <Route
-              path="/category"
-              element={<AdminCategory data={dataCategory} />}></Route>
-            <Route
-              path="/category/:id"
-              element={<AdminOneCategory />}></Route>
-            {/* <Route
+    //данные  категорий
+    useEffect(() => {
+        fetch("https://cc19244api.tmweb.ru/category?filter[depth]=0", {
+            method: "GET",
+            crossDomain: true,
+            headers: {
+                Accept: "application/json",
+                Authorization: token,
+            },
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                setDataCategory(result.data);
+            });
+    }, []);
+
+    return (
+        <section className="cabinet">
+            <div className="cabinet__box">
+                {ctx.openAside && <AdminAside data={currentUser} />}
+                <div className="cabinet__content">
+                    <button className="open-admin-menu" onClick={ctx.toggleAside}>
+                        <div className="line">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        Меню
+                    </button>
+                    <Routes>
+                        <Route path="/" element={<AdminInfo data={currentUser} />}></Route>
+                        <Route path="/objects" element={<AdminObjects data={dataObjects} />}></Route>
+                        <Route path="/objects/:id" element={<AdminOneObject />}></Route>
+                        <Route path="/users" element={<AdminUsers data={dataUsers} />}></Route>
+                        <Route path="/users/:id" element={<AdminOneUser />}></Route>
+                        <Route path="/category" element={<AdminCategory data={dataCategory} />}></Route>
+                        <Route path="/category/:id" element={<AdminOneCategory />}></Route>
+                        {/* <Route
               path="/support"
               element={
                 <AdminSupport
@@ -171,11 +159,11 @@ const Admin = () => {
                   data={dataUsers}
                 />
               }></Route> */}
-          </Routes>
-        </div>
-      </div>
-    </section>
-  );
+                    </Routes>
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default Admin;

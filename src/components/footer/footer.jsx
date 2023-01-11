@@ -33,9 +33,9 @@ const Footer = (props) => {
                                 to="/executor">
                                 Информация для заказчиков
                             </NavLink>
-                            <span className="item" onClick={ctx.closeMobileAppModal}>
+                            <NavLink to="/application" target="_blank" className="item">
                                 Мобильное приложение
-                            </span>
+                            </NavLink>
                         </div>
                         {/* пока не понятно, насколько этот блок нужен
                          <div className="footer__nav min">
