@@ -1,0 +1,124 @@
+.mobile_app_page {
+    padding: 60px 0;
+    display: flex;
+    .left_side {
+        width: 40%;
+    }
+    h2 {
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 135%;
+        span {
+            font-weight: 500;
+        }
+    }
+    .text {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 130%;
+        margin-bottom: 35px;
+    }
+    .platforms {
+        display: flex;
+        gap: 20px;
+    }
+    .platform {
+        width: 100%;
+        display: flex;
+        min-width: 170px;
+        align-items: center;
+        padding: 5px;
+        background: #546edb;
+        border-radius: 7px;
+        color: #fff;
+        cursor: pointer;
+        img {
+            width: 50px;
+            margin-right: 10px;
+        }
+        span {
+            font-weight: 700;
+            font-size: 17px;
+            line-height: 115%;
+        }
+    }
+    .open_popup {
+        position: absolute;
+        left: 100px;
+        top: 200px;
+        z-index: 10;
+        cursor: pointer;
+    }
+    .img_container {
+        position: relative;
+    }
+    .mini_mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .mobile_app_page {
+        .left_side {
+            width: 70%;
+        }
+        .text_first {
+            width: 75%;
+        }
+        .img_container {
+            right: 25%;
+            z-index: -1;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile_app_page {
+        padding: 30px 0;
+        flex-direction: column;
+        .left_side,
+        .text_first {
+            width: 100%;
+        }
+        h2 {
+            font-size: 30px;
+        }
+        .text {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .platforms {
+            flex-wrap: wrap;
+        }
+        .platform {
+            width: 180px;
+        }
+        .img_container {
+            right: 0;
+            text-align-last: right;
+            padding-top: 30px;
+        }
+        .open_popup {
+            top: 65px;
+        }
+    }
+}
+
+@media (max-width: 610px) {
+    .mobile_app_page {
+        .platforms {
+            flex-direction: column;
+        }
+        .open_popup,
+        .mobile_img {
+            display: none;
+        }
+        .mini_mobile {
+            display: block;
+            position: absolute;
+            right: -65px;
+            bottom: 0;
+        }
+    }
+}

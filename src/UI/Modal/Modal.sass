@@ -428,8 +428,26 @@
   width: 100%
   padding: 9px
 
-.modal____close
+.modal____close 
   cursor: pointer
   transition: all 0.4s
   &:hover
     opacity: 0.8
+
+@media(max-width: 900px)
+  .modal_container
+    width: 75%
+  .modal__title
+    text-align: center
+    font-size: 25px
+  .modal____close
+    right: -56px
+  .mobile_platforms
+    flex-wrap: wrap
+    gap: 10px
+  .mobile_platform
+    width: 100%
+  .mobile_qr_image
+    height: unset
+    img
+      width: 100%

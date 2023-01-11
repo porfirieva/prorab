@@ -9,9 +9,7 @@ import Input from "../../../UI/Input";
 import { CalendarIcon } from "../../../components/icons/CalendarIcon";
 import { ArrowLeftIcon } from "../../../components/icons/ArrowLeftIcon";
 import { url } from "../../../components/catalog/specialEuipmentCatalog";
-import { DeleteIcon } from '../../../components/icons/DeleteIcon'
-
-
+import { DeleteIcon } from "../../../components/icons/DeleteIcon";
 
 const useFetchAd = (id) => {
     const [ad, setAd] = useState({});
@@ -26,13 +24,12 @@ const useFetchAd = (id) => {
         })
             .then((res) => res.json())
             .then(({ data }) => {
-                setAd(data)
+                setAd(data);
             });
     }, [id]);
 
-
-    return ad
-}
+    return ad;
+};
 
 const EditAd = ({ id, onPageChange }) => {
     const ad = useFetchAd(id);
@@ -67,7 +64,7 @@ const EditAd = ({ id, onPageChange }) => {
                 setCategoryParent({
                     label: categoryParent?.title,
                     value: categoryParent?.id,
-                })
+                });
                 callback(
                     data.data
                         .map(({ title, id }) => ({
@@ -98,8 +95,8 @@ const EditAd = ({ id, onPageChange }) => {
                 const category = data.data.find((item) => item.id === ad.category_id);
                 setCategory({
                     label: category?.title,
-                    value: category?.id
-                })
+                    value: category?.id,
+                });
                 callback(
                     data.data
                         .map(({ title, id }) => ({
@@ -117,7 +114,7 @@ const EditAd = ({ id, onPageChange }) => {
 
         const formData = new FormData();
         let category_id = category === null ? "" : category.value;
-        let selected_images = currentImages === null ? null : (downloadImages === undefined ? null : downloadImages[0]);
+        let selected_images = currentImages === null ? null : downloadImages === undefined ? null : downloadImages[0];
         let city = cityId === undefined ? "" : cityId;
 
         console.log({
@@ -161,7 +158,6 @@ const EditAd = ({ id, onPageChange }) => {
         //     });
     };
 
-
     const inputName = useRef();
     const inputModel = useRef();
     const inputPriceHour = useRef();
@@ -169,17 +165,17 @@ const EditAd = ({ id, onPageChange }) => {
     const inputAbout = useRef();
 
     useEffect(() => {
-        setCurrentImages(ad.image)
-    }, [ad])
+        setCurrentImages(ad.image);
+    }, [ad]);
 
     const deleteCurrentImage = (e) => {
         if (currentImages === undefined) {
-            return
+            return;
         }
-        e.preventDefault()
+        e.preventDefault();
 
-        setCurrentImages(null)
-    }
+        setCurrentImages(null);
+    };
 
     return (
         <form>
@@ -192,20 +188,19 @@ const EditAd = ({ id, onPageChange }) => {
                     Сохранить
                 </button>
 
-                {currentImages !== undefined && (currentImages !== null) &&
+                {currentImages !== undefined && currentImages !== null && (
                     <div className="imagesMultiple">
                         <div className="input_foto_wrap">
-                            <img src={url + currentImages} alt='' />
+                            <img src={url + currentImages} alt="" />
                             <button onClick={(e) => deleteCurrentImage(e)}>
                                 <DeleteIcon />
                             </button>
                         </div>
                     </div>
-                }
-                {currentImages === null &&
+                )}
+                {currentImages === null && (
                     <InputPhoto images={downloadImages} onLoad={setDownloadImages} onDelete={setDownloadImages} />
-                }
-
+                )}
 
                 <div className="create_ads__box">
                     <div>
@@ -323,7 +318,7 @@ const EditAd = ({ id, onPageChange }) => {
                 </div>
                 <button className="btn_save">Сохранить</button>
             </div>
-        </form >
+        </form>
     );
 };
 
